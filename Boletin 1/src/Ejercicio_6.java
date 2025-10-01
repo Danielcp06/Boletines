@@ -14,6 +14,7 @@ public class Ejercicio_6 {
         }
 
         System.out.println(calc);
+        sc.close();
 
     }
 }

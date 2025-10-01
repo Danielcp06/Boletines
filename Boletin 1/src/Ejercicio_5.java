@@ -6,7 +6,7 @@ public class Ejercicio_5 {
         System.out.println("Dime numeros");
         int num = sc.nextInt();
         int contador = 0;
-        while (num >= 0){
+        while (num >= 0) {
             System.out.println("Dime otro numero(Dime uno negativo para terminar)");
             contador++;
             num = sc.nextInt();

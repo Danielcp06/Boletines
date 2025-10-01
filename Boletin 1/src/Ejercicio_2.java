@@ -10,6 +10,8 @@ public class Ejercicio_2 {
 
         }
 
+        sc.close();
+
 
     }
 }
