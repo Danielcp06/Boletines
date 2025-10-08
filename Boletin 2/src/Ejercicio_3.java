@@ -6,7 +6,7 @@ public class Ejercicio_3 {
         System.out.println("Dime un numero");
         int num = sc.nextInt();
         int contador = 0;
-        while (num > 0){
+        while (num != 0){
             num = num/10;
             contador++;
         }
