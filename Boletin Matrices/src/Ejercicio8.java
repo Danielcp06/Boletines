@@ -16,14 +16,18 @@ public class Ejercicio8 {
 
         return matriz3;
     }
-    public static String escribirMatriz(int[][] matriz){
-
-        return "";
+    public static void escribirMatriz(int[][] matriz){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
     static void main(String[] args) {
         int matriz1[][] = {{7, 2, 1}, {3, 4, 5}};
         int matriz2[][] = {{7, 2, 1}, {3, 4, 5}};
-        System.out.println(sumaMatrices(matriz1, matriz2));
+        escribirMatriz(sumaMatrices(matriz1, matriz2));
     }
 }
