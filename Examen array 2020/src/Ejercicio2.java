@@ -27,10 +27,11 @@ public class Ejercicio2 {
         recorerJardin(JARDIN);
 
     }
-    public static void recorerJardin (int[][] jardin){
+
+    public static void recorerJardin(int[][] jardin) {
         for (int i = 0; i < jardin.length; i++) {
             for (int j = 0; j < jardin[i].length; j++) {
-                if (jardin[i][j] == SEMILLA && florece(jardin, i, j)){
+                if (jardin[i][j] == SEMILLA && florece(jardin, i, j)) {
                     System.out.printf("La flor de la posición %d,%d florecerá\n", i, j);
                 }
             }
@@ -38,69 +39,38 @@ public class Ejercicio2 {
 
     }
 
-    public static boolean florece(int[][] jardin, int fila, int columna){
-        if (hayAgua(jardin, fila, columna) && hayaAbeja(jardin, fila, columna) && (!hayMalaHierva(jardin, fila, columna) || hayMalaHierva(jardin, fila, columna) && hayGusano(jardin, fila, columna))){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public static boolean buscaElemento(int[][] matriz, int fila, int columna, int rango, int elementoBuscar) {
 
+        for (int i = fila - rango; i <= fila + rango; i++) {
+            for (int j = columna - rango; j <= columna + rango; j++) {
+                if (i == fila && j == columna) continue;
+                if (i >= 0 && i < matriz.length && j >= 0 && j < matriz[0].length) {
+                    if (matriz[i][j] == elementoBuscar) return true;
+                }
+
+            }
+
+        }
+        return false;
+    }
+
+    public static boolean florece(int[][] jardin, int fila, int columna) {
+        return hayAgua(jardin, fila, columna) && hayAbeja(jardin, fila, columna) && (!hayMalaHierva(jardin, fila, columna) || hayMalaHierva(jardin, fila, columna) && hayGusano(jardin, fila, columna));
     }
 
     public static boolean hayAgua(int[][] matriz, int fila, int columna) {
-        for (int i = fila - 1; i <= fila + 1 ; i++) {
-            for (int j = columna - 1; j <= columna + 1 ; j++) {
-                if (i == fila && j == columna) continue;
-                if (i >= 0 && i < matriz.length && j >= 0 && j < matriz[0].length) {
-                    if (matriz[i][j] == AGUA) return true;
-                }
-
-            }
-
-        }
-        return false;
+        return buscaElemento(matriz, fila, columna, 1, AGUA);
     }
+
     public static boolean hayMalaHierva(int[][] matriz, int fila, int columna) {
-        for (int i = fila - 1; i <= fila + 1 ; i++) {
-            for (int j = columna - 1; j <= columna + 1 ; j++) {
-                if (i == fila && j == columna) continue;
-                if (i >= 0 && i < matriz.length && j >= 0 && j < matriz[0].length) {
-                    if (matriz[i][j] == MALAHIERVA) return true;
-                }
-
-            }
-
-        }
-        return false;
+        return buscaElemento(matriz, fila, columna, 1, MALAHIERVA);
     }
+
     public static boolean hayGusano(int[][] matriz, int fila, int columna) {
-        for (int i = fila - 1; i <= fila + 1 ; i++) {
-            for (int j = columna - 1; j <= columna + 1 ; j++) {
-                if (i == fila && j == columna) continue;
-                if (i >= 0 && i < matriz.length && j >= 0 && j < matriz[0].length) {
-                    if (matriz[i][j] == GUSANO) return true;
-                }
-
-            }
-
-        }
-        return false;
-    }
-    public static boolean hayaAbeja(int[][] matriz, int fila, int columna) {
-        for (int i = fila - 3; i <= fila + 3 ; i++) {
-            for (int j = columna - 3; j <= columna + 3 ; j++) {
-                if (i == fila && j == columna) continue;
-                if (i >= 0 && i < matriz.length && j >= 0 && j < matriz[0].length) {
-                    if (matriz[i][j] == ABEJA) return true;
-                }
-
-            }
-
-        }
-        return false;
+        return buscaElemento(matriz, fila, columna, 1, GUSANO);
     }
 
-
-
+    public static boolean hayAbeja(int[][] matriz, int fila, int columna) {
+        return buscaElemento(matriz, fila, columna, 3, ABEJA);
+    }
 }
