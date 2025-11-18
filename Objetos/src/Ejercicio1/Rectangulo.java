@@ -69,18 +69,18 @@ public class Rectangulo {
         System.out.println("Ahora dime la longitud");
         double num2 = sc.nextDouble();
         while (num2 < 0 || num2 == num1 || num2 >= 20) {
-           if (num2 <= 0){
-               System.out.println("Tiene que ser mayor que 0");
-               num2 = sc.nextDouble();
-           }else {
-               if (num2 == num1){
-                   System.out.println("La longitud y el ancho no pueden ser iguales sino seria un cuadrado");
-                   num2 = sc.nextDouble();
-               }else{
-                   System.out.println("El numero no puede ser mayor que 20");
-                   num2 = sc.nextDouble();
-               }
-           }
+            if (num2 <= 0){
+                System.out.println("Tiene que ser mayor que 0");
+                num2 = sc.nextDouble();
+            }else {
+                if (num2 == num1){
+                    System.out.println("La longitud y el ancho no pueden ser iguales sino seria un cuadrado");
+                    num2 = sc.nextDouble();
+                }else{
+                    System.out.println("El numero no puede ser mayor que 20");
+                    num2 = sc.nextDouble();
+                }
+            }
 
 
         }
