@@ -1,34 +1,76 @@
 package Ejercicio2;
 
+import Ejercicio2.excepciones.MiExection;
+
 public class Cuenta {
+    private double saldo;
+    private int numeroIngresos;
+    private int numeroReintegros;
 
-    public static String[] textoOpciones = {
-       "Tienes la opcion de mirar cuenta, ingresar dinero o retirar dinero"
-    };
-
-    public static int verOpciones = 0;
-
-    public static void elegirOpciones(String opcion){
-        while(haciendoTransferencias){
-            switch (opcion.toLowerCase()){
-                case "ingresar":
-                   break;
-                case "retirar":
-                    break;
-                case "mirar cuenta":
-
-                    break;
-                case "salir":
-                    haciendoTransferencias = false;
-                    break;
-            }
-        }
-        System.out.println("Secion cerrada");
-        return ;
+    public Cuenta(double saldoInicial) throws MiExection{
+        setSaldo(saldoInicial);
+        setNumeroIngresos();
+        setNumeroReintegros();
     }
 
-    private static boolean haciendoTransferencias = true;
+    public double getSaldo() {
+        return saldo;
+    }
 
-    private static int ingresar;
+    private void setSaldo(double saldoInicial) throws MiExection {
+        if (saldoInicial < 0){
+            throw new MiExection("Error: El saldo inicial no puede ser negativo");
+        }
+        this.saldo=saldoInicial;
+    }
+
+    public int getNumeroIngresos() {
+        return numeroIngresos;
+    }
+
+    private void setNumeroIngresos() {
+        this.numeroIngresos = 0;
+    }
+
+    public int getNumeroReintegros() {
+        return numeroReintegros;
+    }
+
+    private void setNumeroReintegros() {
+        this.numeroReintegros = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Cuenta{" +
+                "saldo=" + saldo +
+                ", numeroIngresos=" + numeroIngresos +
+                ", numeroReintegros=" + numeroReintegros +
+                '}';
+    }
+
+    public void reintegro(double dineroASacar) throws MiExection {
+        if (dineroASacar < 0) {
+            throw new MiExection("El saldo no puede ser negativo");
+        }
+        if (dineroASacar > this.saldo) {
+            throw new MiExection("No tienes suficiente saldo");
+        }
+        saldo -= dineroASacar;
+        numeroReintegros++;
+    }
+
+    public void ingreso(double dineroAIngresar) throws MiExection {
+        if (dineroAIngresar < 0) {
+            throw new MiExection("El saldo no puede ser negativo");
+        }
+        saldo += dineroAIngresar;
+        numeroIngresos++;
+    }
+
+    public void consulta() {
+        System.out.println(toString());
+    }
+
+
 }
-
