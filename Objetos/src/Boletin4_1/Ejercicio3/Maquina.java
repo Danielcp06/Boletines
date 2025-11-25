@@ -1,4 +1,4 @@
-package Ejercicio3;
+package Boletin4_1.Ejercicio3;
 
 /*
 Realizar una programa en Java que sirva para simular una máquina de café.
@@ -32,21 +32,20 @@ separado.
 los mensajes de error correspondientes o el mensaje "Producto servido".
 */
 
-import Ejercicio3.Exception.MiException;
+import Boletin4_1.Ejercicio3.Exception.MiException;
 
 public class Maquina {
     private static final int MAXIMOCAFE = 50;
     private static final int MAXIMOLECHE = 50;
-    private static final int MAXIMOVASOS = 640741272;
+    private static final int MAXIMOVASOS = 80;
 
-    private static final double PRECIO_CAFE = 1;
-    private static final double PRECIO_LECHE = 0.8;
-    private static final double PRECIO_CAFE_LECHE = 1.5;
+    public static final double PRECIO_CAFE = 1;
+    public static final double PRECIO_LECHE = 0.8;
+    public static final double PRECIO_CAFE_LECHE = 1.5;
 
     private int dosisCafeRestantes;
     private int dosisLecheRestantes;
     private int vasosRestantes;
-
     private double monedero;
 
     public Maquina(double monedero) throws MiException {
@@ -119,7 +118,7 @@ public class Maquina {
 
     public double servirCafeLeche(double dineroIntroducido) throws MiException {
         double cambio = comprobarCambio(dineroIntroducido, PRECIO_CAFE_LECHE);
-        if(dosisLecheRestantes == 0 || vasosRestantes == 0){
+        if(dosisLecheRestantes == 0 || vasosRestantes == 0 || dosisCafeRestantes == 0){
             throw new MiException("No podemos darle su pedido");
         }
 

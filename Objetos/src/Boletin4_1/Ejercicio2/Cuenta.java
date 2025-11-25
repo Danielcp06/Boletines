@@ -1,6 +1,6 @@
-package Ejercicio2;
+package Boletin4_1.Ejercicio2;
 
-import Ejercicio2.excepciones.MiExection;
+import Boletin4_1.Ejercicio2.excepciones.MiExection;
 
 public class Cuenta {
     private double saldo;

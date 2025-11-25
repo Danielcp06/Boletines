@@ -1,25 +1,27 @@
-package Ejercicio3;
+package Boletin4_1.Ejercicio3;
 
-import Ejercicio3.Exception.MiException;
+import Boletin4_1.Ejercicio3.Exception.MiException;
 import MiEntradaSalida.MiEntradaSalida;
 
 import java.util.Scanner;
 
 public class Principal {
-    private static Scanner sc = new Scanner(System.in);
     static void main(String[] args) {
         boolean comprando = true;
-        Maquina miMaquina;
+        Maquina miMaquina = null;
+        while(miMaquina == null){
+            try {
+                miMaquina = new Maquina(10);
 
-        try {
-            miMaquina = new Maquina(10);
-
-        } catch (MiException e) {
-            throw new RuntimeException(e);
+            } catch (MiException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
+
         while(comprando){
-            String comando = MiEntradaSalida.leerLinea("Puedes comprar café solo(1€), leche sola(0,8€), café con leche(1,5€),\ntambién puedes consultar el estado de la maquina y salir\n");
+            String mensaje = "Puedes comprar café solo %.2f, leche sola %.2f y el café con leche %.2f,\ntambién puedes consultar el estado de la maquina y salir\n".formatted(Maquina.PRECIO_CAFE, Maquina.PRECIO_LECHE,Maquina.PRECIO_CAFE_LECHE);
+            String comando = MiEntradaSalida.leerLinea(mensaje);
             double dineroIntroducido;
             switch (comando.toLowerCase()){
                 case "cafe solo":
@@ -56,8 +58,7 @@ public class Principal {
 
                     break;
                 case "consultar":
-                    String estado = miMaquina.estadoMaquina();
-                    System.out.println(estado);
+                    System.out.println(miMaquina.estadoMaquina());
                      break;
                 case "salir":
                     comprando = false;
