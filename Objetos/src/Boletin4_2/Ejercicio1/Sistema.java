@@ -19,10 +19,12 @@ c. getIMC, que devuelve el índice de masa corporal. No acepta parámetros. La
 fórmula es: peso (kg) / [estatura (m)]
 2
  */
+
 public class Sistema {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Dime tu nombre");
         String nombre = scanner.nextLine();
 
@@ -30,17 +32,19 @@ public class Sistema {
         int dni = scanner.nextInt();
 
         System.out.println("Dime tu sexo (H o M)");
-        char sexo = scanner.nextLine().charAt(1);
-        while(sexo != 'M' || sexo != 'F'){
+        char sexo = scanner.next().toUpperCase().charAt(0);
+
+        while (sexo != 'H' && sexo != 'M') {
             System.out.println("Tiene que ser H o M");
-            sexo = scanner.nextLine().charAt(1);
+            sexo = scanner.next().toUpperCase().charAt(0);
         }
 
         System.out.println("Dime tu peso");
-        int peso = scanner.nextInt();
+        float peso = scanner.nextFloat();
 
         System.out.println("Dime en que año has nacido");
         int año = scanner.nextInt();
+
         System.out.println("Dime que mes");
         int mes = scanner.nextInt();
 
@@ -50,8 +54,13 @@ public class Sistema {
         System.out.println("Ahora dime tu altura");
         float altura = scanner.nextFloat();
 
-        Persona jose = new Persona(nombre, dni, sexo, peso, LocalDate.of(año, mes, dia),altura);
+        Persona p = new Persona(nombre, dni, sexo, peso, LocalDate.of(año, mes, dia), altura);
+
+        System.out.println("La letra de tu DNI es: " + p.getLetraDNI());
+        System.out.println("Tu IMC es: " + p.getIMC());
     }
 
 
 }
+
+
