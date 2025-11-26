@@ -25,7 +25,7 @@ public class Principal {
             double dineroIntroducido;
             switch (comando.toLowerCase()){
                 case "cafe solo":
-                    dineroIntroducido = MiEntradaSalida.leerDecimal("Cuanto dinero vas a introducir\n");
+                    dineroIntroducido = MiEntradaSalida.leerDouble("Cuanto dinero vas a introducir\n");
                     try {
                         double cambio = miMaquina.servirCafe(dineroIntroducido);
                         System.out.println("Se le ha servido su café");
@@ -36,7 +36,7 @@ public class Principal {
 
                     break;
                 case "leche sola":
-                    dineroIntroducido = MiEntradaSalida.leerDecimal("Cuanto dinero vas a introducir\n");
+                    dineroIntroducido = MiEntradaSalida.leerDouble("Cuanto dinero vas a introducir\n");
                     try {
                         double cambio = miMaquina.servirLeche(dineroIntroducido);
                         System.out.println("Se le ha servido su leche");
@@ -47,7 +47,7 @@ public class Principal {
 
                     break;
                 case "cafe con leche":
-                    dineroIntroducido = MiEntradaSalida.leerDecimal("Cuanto dinero vas a introducir\n");
+                    dineroIntroducido = MiEntradaSalida.leerDouble("Cuanto dinero vas a introducir\n");
                     try {
                         double cambio = miMaquina.servirCafeLeche(dineroIntroducido);
                         System.out.println("Se le ha servido su café con leche");

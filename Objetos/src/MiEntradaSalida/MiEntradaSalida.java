@@ -1,8 +1,12 @@
 package MiEntradaSalida;
 
+
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Scanner;
+
 //Version2.0
-public class MiEntradaSalida {
+public class MiEntradaSalida{
     private static Scanner sc = new Scanner(System.in);
 
     /**
@@ -12,8 +16,28 @@ public class MiEntradaSalida {
      * @return el entero leído por teclado
      */
     public static int leerEntero(String mensaje) {
-        System.out.print(mensaje);
-        return Integer.parseInt(sc.nextLine());
+        int integer = 0;
+        // Variable que almacenará un booleano que indicará si se le debe volver a pedir el dato al usuario.
+        boolean flag = true;
+
+        while (flag) {
+            // Pedimos el entero por pantalla.
+            System.out.println(mensaje);
+            // Comprobamos si el usuario está introduciendo algo correcto usando la excepción del método parseInt.
+            try {
+                integer = Integer.parseInt(sc.nextLine());
+                // Si llegamos hasta aquí, es porque el usuario ha introducido un dato correcto.
+                flag = false;
+            }
+            // Si se lanza la excepción, informamos al usuario de su error.
+            catch (NumberFormatException e) {
+                // 2. Mensaje de error específico.
+                System.out.println("Error: Debe introducir un número entero.");
+            }
+
+        }
+
+        return integer;
     }
 
     /**
@@ -36,31 +60,67 @@ public class MiEntradaSalida {
     }
 
     /**
-     * Leer un decimal
+     * Leer un decimal de tipo double
      *
      * @param mensaje El mensaje a introducir
      * @return Lo introducido por el usuario
      */
-    public static double leerDecimal(String mensaje) {
-        System.out.print(mensaje);
-        return Double.parseDouble(sc.nextLine());
+    public static double leerDouble(String mensaje) {
+        double integer = 0;
+        // Variable que almacenará un booleano que indicará si se le debe volver a pedir el dato al usuario.
+        boolean flag = true;
+
+        while (flag) {
+            // Pedimos el entero por pantalla.
+            System.out.println(mensaje);
+            // Comprobamos si el usuario está introduciendo algo correcto usando la excepción del método parseInt.
+            try {
+                integer = Double.parseDouble(sc.nextLine());
+                // Si llegamos hasta aquí, es porque el usuario ha introducido un dato correcto.
+                flag = false;
+            }
+            // Si se lanza la excepción, informamos al usuario de su error.
+            catch (NumberFormatException e) {
+                // 2. Mensaje de error específico.
+                System.out.println("Error: Debe introducir un número entero.");
+            }
+
+        }
+
+        return integer;
     }
 
     /**
-     * Minimo Común Divisor de 2 números
+     * Leer un decimal de tipo Float
      *
-     * @param a primer numero
-     * @param b segundo numero
-     * @return el mcd
+     * @param mensaje mensaje a mostrar
+     * @return lo introducido por el usuario
      */
-    public static int mcd(int a, int b) {
-        while (b != 0) {
-            int temporal = b;
-            b = a % b;
-            a = temporal;
+    public static float leerFloat(String mensaje) {
+        float integer = 0;
+        // Variable que almacenará un booleano que indicará si se le debe volver a pedir el dato al usuario.
+        boolean flag = true;
+
+        while (flag) {
+            // Pedimos el entero por pantalla.
+            System.out.println(mensaje);
+            // Comprobamos si el usuario está introduciendo algo correcto usando la excepción del método parseInt.
+            try {
+                integer = Float.parseFloat(sc.nextLine());
+                // Si llegamos hasta aquí, es porque el usuario ha introducido un dato correcto.
+                flag = false;
+            }
+            // Si se lanza la excepción, informamos al usuario de su error.
+            catch (NumberFormatException e) {
+                // 2. Mensaje de error específico.
+                System.out.println("Error: Debe introducir un número entero.");
+            }
+
         }
-        return a;
+
+        return integer;
     }
+
 
     /**
      * Generar un número aleatorio determinado por un máximo
@@ -159,6 +219,7 @@ public class MiEntradaSalida {
 
     /**
      * Imprimir una matriz de strings
+     *
      * @param matriz matriz a imprimir
      */
     public static void imprimirMatrizString(String[][] matriz) {
@@ -196,5 +257,26 @@ public class MiEntradaSalida {
             }
         }
         System.out.println();
+    }
+
+    public static LocalDate fecha(String mensaje) throws MiEntradaSalidaException {
+        int año =  leerEnteroPositivo("Introduce el año: ",true);
+        int mes =  leerEnteroPositivo("Introduce el mes: ",true);
+        int dia =  leerEnteroPositivo("Introduce el dia: ",true);
+        try {
+            return LocalDate.of(año,mes,dia);
+        }catch (DateTimeException e){
+            throw new MiEntradaSalidaException("Fecha no valida.");
+        }
+
+    }
+
+    public static void main(String[] args) {
+        try {
+            LocalDate fecha = MiEntradaSalida.fecha("lol");
+            System.out.println(fecha);
+        } catch (MiEntradaSalidaException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

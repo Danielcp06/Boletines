@@ -1,5 +1,7 @@
 package Boletin4_2.Ejercicio1;
 
+import Boletin4_2.Ejercicio1.Excepciones.MiException;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -30,6 +32,10 @@ public class Sistema {
 
         System.out.println("Dime tu dni sin la letra");
         int dni = scanner.nextInt();
+        while((dni / 10000000 ) < 0.9 || dni > 99999999){
+            System.out.println("El dni necesita 8 digitos");
+            dni = scanner.nextInt();
+        }
 
         System.out.println("Dime tu sexo (H o M)");
         char sexo = scanner.next().toUpperCase().charAt(0);
@@ -41,20 +47,41 @@ public class Sistema {
 
         System.out.println("Dime tu peso");
         float peso = scanner.nextFloat();
+        while(peso > 200){
+            System.out.println("Si no te puedes ni mover de la cama, ¿como vas a usar esto?");
+            peso = scanner.nextFloat();
+        }
 
         System.out.println("Dime en que año has nacido");
         int año = scanner.nextInt();
+        while(año < 1930 || año > 2025){
+            System.out.println("Pero que hablas muchacho");
+            año = scanner.nextInt();
+        }
 
         System.out.println("Dime que mes");
         int mes = scanner.nextInt();
+        while (mes < 1 || mes > 12){
+            System.out.println("Los meses son del 1 al 12");
+            mes = scanner.nextInt();
+        }
 
         System.out.println("Y el dia");
         int dia = scanner.nextInt();
+        while(dia < 1 || dia > 30){
+            System.out.println("Los dias son del 1 al 30");
+            dia = scanner.nextInt();
+        }
 
         System.out.println("Ahora dime tu altura");
         float altura = scanner.nextFloat();
 
-        Persona p = new Persona(nombre, dni, sexo, peso, LocalDate.of(año, mes, dia), altura);
+        Persona p = null;
+        try {
+            p = new Persona(nombre, dni, sexo, peso, LocalDate.of(año, mes, dia), altura);
+        } catch (MiException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("La letra de tu DNI es: " + p.getLetraDNI());
         System.out.println("Tu IMC es: " + p.getIMC());
