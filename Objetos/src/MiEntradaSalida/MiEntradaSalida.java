@@ -248,7 +248,7 @@ public class MiEntradaSalida{
      * @param mensaje mensaje a mostrar
      * @param array   lista a recorrer
      */
-    public static void mostrarOpcionesSinNulos(String mensaje, String[] array) {
+    public static void mostrarOpcionesSinNulos(String mensaje, Object[] array) {
         System.out.println(mensaje);
         int posicion = 1;
         for (int i = 0; i < array.length; i++) {
