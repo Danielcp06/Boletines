@@ -12,7 +12,6 @@ elemento:
 ○ nombre, String
 ○ mensajesRecibidos
 ○ mensajesEnviados
-
 ○ metodo enviarMensaje. Debe comprobar que el mensaje tiene asunto,
 cuerpo y destinatario. Debe poner automáticamente el remitente y la fecha de
 envío. Además, debe añadir el mensaje a los buzones correspondientes de
@@ -33,6 +32,9 @@ buzones correspondiente. Intenta enviar mensajes cuando los buzones están lleno
 package Boletin4_3.Ejercicio2;
 
 
+import Boletin4_3.Ejercicio2.Exception.MensajeException;
+import MiEntradaSalida.MiEntradaSalida;
+
 import java.util.Scanner;
 
 public class Main {
@@ -46,6 +48,28 @@ public class Main {
         String destinatario = sc.nextLine();
         System.out.println("Escriba el asunto");
         String asunto = sc.nextLine();
+        System.out.println("Escribe el cuerpo del mensaje");
+        String cuerpo = sc.nextLine();
+
+        Persona p = new Persona(nombre, destinatario);
+
+        Mensaje m = new Mensaje(asunto, cuerpo, p, p);
+
+        boolean correo = true;
+        System.out.println("Los comandos son mirar mensajes, borrar el ultimo mensaje, salir");
+        while (correo){
+            String comando = MiEntradaSalida.leerLinea("¿Qué vas a hacer?");
+            switch (comando.toLowerCase()){
+                case "salir":
+                    correo = false;
+                    break;
+                case "borrar":
+
+
+
+            }
+        }
+        System.out.println("Gracias por utilizar nuestra app");
 
     }
 
