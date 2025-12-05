@@ -1,18 +1,18 @@
 package Boletin4_3.Ejercicio2;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class Mensaje {
     private String asunto;
     private String cuerpo;
-    private LocalDate fechaEnvío;
+    private LocalDateTime fechaEnvio;
     private Persona remitente;
     private Persona destinatario;
 
-    public Mensaje(String asunto, String cuerpo, Persona remitente, Persona destinatario) {
+    public Mensaje(String asunto, String cuerpo, Persona remitente, Persona destinatario, LocalDateTime fechaEnvio) {
         this.asunto = asunto;
         this.cuerpo = cuerpo;
-        this.fechaEnvío = LocalDate.now();
+        this.fechaEnvio = fechaEnvio;
         this.remitente = remitente;
         this.destinatario = destinatario;
     }
@@ -25,8 +25,8 @@ public class Mensaje {
         return cuerpo;
     }
 
-    public LocalDate getFechaEnvío() {
-        return fechaEnvío;
+    public LocalDateTime getFechaEnvio() {
+        return fechaEnvio;
     }
 
     public Persona getRemitente() {

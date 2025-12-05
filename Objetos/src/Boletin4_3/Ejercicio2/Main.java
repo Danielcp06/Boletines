@@ -51,26 +51,27 @@ public class Main {
         System.out.println("Escribe el cuerpo del mensaje");
         String cuerpo = sc.nextLine();
 
-        Persona p = new Persona(nombre, destinatario);
+        Persona p = new Persona(nombre);
+        Persona p2 = new Persona("Pepe");
 
-        Mensaje m = new Mensaje(asunto, cuerpo, p, p);
-
-        boolean correo = true;
-        System.out.println("Los comandos son mirar mensajes, borrar el ultimo mensaje, salir");
-        while (correo){
-            String comando = MiEntradaSalida.leerLinea("¿Qué vas a hacer?");
-            switch (comando.toLowerCase()){
-                case "salir":
-                    correo = false;
-                    break;
-                case "borrar":
-
-
-
-            }
+        try {
+            p.enviarMensaje(asunto,cuerpo,p2);
+            p.enviarMensaje(asunto,cuerpo,p2);
+            p.enviarMensaje(asunto,cuerpo,p2);
+            p.enviarMensaje(asunto,cuerpo,p2);
+            p.enviarMensaje(asunto,cuerpo,p2);
+            p.enviarMensaje(asunto,cuerpo,p2);
+        } catch (MensajeException e) {
+            System.out.println(e.getMessage());;
         }
-        System.out.println("Gracias por utilizar nuestra app");
 
+        try {
+            p.borrarMensajeEnviadoMasAntiguo();
+            p2.borrarMensajeRecibidoMasAntiguo();
+            p.enviarMensaje(asunto,cuerpo,p2);
+        } catch (MensajeException e) {
+            System.out.println(e.getMessage());;
+        }
     }
 
 
