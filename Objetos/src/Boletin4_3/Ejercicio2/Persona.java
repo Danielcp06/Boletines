@@ -18,6 +18,10 @@ public class Persona {
 
     public String getNombre() {
         return nombre;
+
+
+
+
     }
 
     public void enviarMensaje(String asunto, String cuerpo, Persona destinatario) throws MensajeException {
