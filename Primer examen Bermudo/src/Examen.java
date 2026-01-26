@@ -38,7 +38,7 @@ public class Examen {
                 System.out.println("La pareja no es la correcta");
                 contadorVidas = vidas - 1; //Restamos una vida si falla
             }
-            if (contadorVidas == 0);{
+            if (contadorVidas == 0){
                 System.out.println("Has perdido todas las vidas");
                 jugando = false;
             }
