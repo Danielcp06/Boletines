@@ -13,8 +13,23 @@ public class VideojuegoService {
      * BUG: No valida si las horas son negativas.
      */
     public void registrarJuego(String titulo, String plataforma, int horas, int puntuacion) {
+        if(titulo == null ){
+
+        }else if(titulo = " "){
+
+        }
+
         Videojuego nuevo = new Videojuego(titulo, plataforma, horas, puntuacion);
         repository.guardar(nuevo);
+
+    }
+
+    /**
+     * Sobrecarga metodo original para que se pueda hacer la parte de los mocks
+     */
+    public void registrarJuego(Videojuego juego) {
+
+        repository.guardar(juego);
     }
 
     /**
@@ -33,13 +48,12 @@ public class VideojuegoService {
         // ni en el segundo (>50). Devuelve null o comportamiento inesperado.
         if (puntuacion < 50) {
             return "Malo";
-        } else if (puntuacion > 50 && puntuacion < 90) {
+        } else if (puntuacion < 90) {
             return "Bueno";
-        } else if (puntuacion >= 90) {
+        } else {
             return "Obra Maestra";
         }
 
-        return "Sin Clasificar"; // Esto ocurrirá con el 50
     }
 
     /**
