@@ -1,3 +1,5 @@
+package domain;
+
 public class JuguetesMadera extends Juguetes{
     private String paisOrigenMadera;
     private int anoTala;
