@@ -11,9 +11,9 @@ public class Liga {
     private String nombre;
     private List<Equipo> equipos;
 
-    public Liga(String nombre, List<Equipo> equipo) {
+    public Liga(String nombre) {
         this.nombre = nombre;
-        this.equipos = equipo;
+        this.equipos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -67,9 +67,28 @@ public class Liga {
         return todos;
     }
 
-    public double mediaDeEdad(){
-        return todosLosJugadores().stream().mapToInt(Jugadores::edadJugador).average().orElse(0);
+    public double mediaDeEdad() throws FutbolException{
+        return todosLosJugadores().stream().mapToInt(Jugadores::edadJugador).average()
+                .orElseThrow(() -> new FutbolException("asd"));
     }
 
+    public List<Jugadores> jugadoresOrdenadosPorFechaNacimiento(){
+        return todosLosJugadores().stream().sorted((j1,j2) -> j2.getEdad() - j1.getEdad()).toList();
+    }
 
+    public List<Jugadores> jugadoresOrdenadosPorNombre(){
+        return todosLosJugadores().stream().sorted().toList();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Bienvenidos a " + nombre).append(System.lineSeparator());
+        sb.append("Equipos: ").append(System.lineSeparator());
+        for (Equipo e: equipos) {
+            sb.append(e).append(System.lineSeparator());
+        }
+
+        return sb.toString();
+
+    }
 }

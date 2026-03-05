@@ -28,11 +28,11 @@ public class Caja implements Comparable<Caja> {
     public int numClientes(){
         return cola.size();
     }
-
+/**
     public void añadirCliente(Cliente cliente){
-        cliente
+        cliente;
     }
-
+*/
     @Override
     public int compareTo(Caja o) {
         if (numClientes() == o.numClientes()){

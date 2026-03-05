@@ -23,12 +23,14 @@ public class Almacen {
                 .orElseThrow(() -> new CajaException("No hay cajas abiertas"));
 
         Cliente nuevo = new Cliente(countClientes++);
-        mejorCaja.add(nuevo);
+        /*mejorCaja.add(nuevo);
 
         System.out.println("Es usted el cliente " + nuevo.getId() +
                 " vaya a la caja " + cajaElegida.getNumero());
+
+         */
     }
-    }
+
 
 
     public void atender(){

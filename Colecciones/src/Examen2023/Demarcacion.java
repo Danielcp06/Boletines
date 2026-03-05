@@ -1,5 +1,5 @@
 package Examen2023;
 
 public enum Demarcacion {
-    portero, defensa, centrocampista, delantero;
+    PORTERO, DEFENSA, CENTROCAMPISTA, DELANTERO;
 }
