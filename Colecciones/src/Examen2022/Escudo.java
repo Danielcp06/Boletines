@@ -3,20 +3,15 @@ package Examen2022;
 import exceptions.ValorNoValidoException;
 
 public class Escudo extends Cromos{
-    private String nombre;
     private int añoFundacion;
     private int numJugadores;
 
     public Escudo(String identificador, String nombre, int añoFundacion, int numJugadores) {
-        super(identificador);
-        this.nombre = nombre;
+        super(identificador, nombre);
         this.añoFundacion = añoFundacion;
         this.numJugadores = numJugadores;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
     public int getAñoFundacion() {
         return añoFundacion;

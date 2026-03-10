@@ -42,11 +42,11 @@ public class Principal {
 
 
         // El mazo 1 es el nuestro, el mazo 2 es otro
-        m2.addCromos(modric);
-        m2.addCromos(joaquin);
-        m2.addCromos(realMadrid);
-        m2.addCromos(gabi);
-        m2.addCromos(panda);
+        m2.añadirCromo(modric);
+        m2.añadirCromo(joaquin);
+        m2.añadirCromo(realMadrid);
+        m2.añadirCromo(gabi);
+        m2.añadirCromo(panda);
 
         // Ahora vamos a crear un array para permitir mostrar todos los cromos
 
@@ -70,7 +70,7 @@ public class Principal {
                         String nombre = sc.nextLine();
                         Cromos c = get(nombre);
 
-                        m1.addCromos(c);
+                        m1.añadirCromo(c);
 
                         break;
                     case 2:
@@ -84,7 +84,7 @@ public class Principal {
                         String nombreCromoDelOtro = sc.nextLine();
                         Cromos cromoDelOtro = get(nombreCromoDelOtro);
 
-                        m1.intercambiar(cromoParaCambiar, cromoDelOtro);
+                        m1.intercambiarCromo(cromoParaCambiar, cromoDelOtro);
 
                         /*
                          * Aqu� habr�a que "restar" ese cromo del mazo 2, pero obviaremos esto para
@@ -138,7 +138,7 @@ public class Principal {
 
     private static String menu() {
         return "\n(1) A�adir nuevo cromo"
-                + "\n(2) Intercambiar dos cromos"
+                + "\n(2) intercambiarCromo dos cromos"
                 + "\n(3) Mezclar con otro mazo"
                 + "\n(4) Contar cromos diferentes"
                 + "\n(5) Mostrar los cromos de un equipo dado"

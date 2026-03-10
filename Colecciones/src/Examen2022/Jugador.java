@@ -3,19 +3,13 @@ package Examen2022;
 import exceptions.ValorNoValidoException;
 
 public class Jugador extends Cromos{
-    private String nombre;
     private String equipo;
     private int altura;
 
     public Jugador(String identificador, String nombre, String equipo, int altura) {
-        super(identificador);
-        this.nombre = nombre;
+        super(identificador, nombre);
         this.equipo = equipo;
         this.altura = altura;
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     public String getEquipo() {
