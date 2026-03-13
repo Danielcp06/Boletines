@@ -2,7 +2,9 @@ package Examen2025;
 
 import exceptions.DBException;
 
-public class Ataque {
+import java.util.Objects;
+
+public class Ataque implements Comparable<Ataque>{
     private String nombre;
     private int ki;
     private int perfeccionDeAtaque;
@@ -50,5 +52,32 @@ public class Ataque {
             throw new DBException("El daño no puede ser 0 o inferior");
         }
         this.dañoProvoca = dañoProvoca;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Ataque ataque)) return false;
+        return perfeccionDeAtaque == ataque.perfeccionDeAtaque && dañoProvoca == ataque.dañoProvoca && Objects.equals(nombre, ataque.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, perfeccionDeAtaque, dañoProvoca);
+    }
+
+    @Override
+    public int compareTo(Ataque o) {
+        return this.nombre.compareTo(o.nombre);
+    }
+
+    @Override
+    public String toString() {
+        return "Ataque{" +
+                "nombre='" + nombre + '\'' +
+                ", ki=" + ki +
+                ", perfeccionDeAtaque=" + perfeccionDeAtaque +
+                ", dañoProvoca=" + dañoProvoca +
+                '}';
     }
 }

@@ -14,6 +14,7 @@ public class Personaje {
     private int kiMaximo;
     private int kiActual;
     private Set<Ataque> ataques;
+    private boolean muerto;
 
     public Personaje(String nombre, TRaza raza, int vidaMaxima, int vidaActual, int kiMaximo, int kiActual) throws DBException {
         this.nombre = nombre;
@@ -23,6 +24,7 @@ public class Personaje {
         setKiMaximo(kiMaximo);
         setKiActual(kiActual);
         ataques = new HashSet<>();
+        muerto = false;
 
     }
 
@@ -82,6 +84,23 @@ public class Personaje {
         this.kiActual = kiActual;
     }
 
+    public boolean estaMuerto(){
+        if (vidaActual == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public void recibirDaño(int daño){
+        if (!estaMuerto()){
+            if (daño > vidaActual){
+                vidaActual = 0;
+            }else {
+                vidaActual = vidaActual - daño;
+            }
+        }
+    }
+
     public void addAtaque(Ataque ataque) throws DBException {
         if (!ataques.add(ataque)){
             throw new DBException("El ataque ya existia");
@@ -98,5 +117,19 @@ public class Personaje {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, raza);
+    }
+
+    @Override
+    public String toString() {
+        return "Personaje{" +
+                "nombre='" + nombre + '\'' +
+                ", raza=" + raza +
+                ", vidaMaxima=" + vidaMaxima +
+                ", vidaActual=" + vidaActual +
+                ", kiMaximo=" + kiMaximo +
+                ", kiActual=" + kiActual +
+                ", ataques=" + ataques +
+                ", muerto=" + muerto +
+                '}';
     }
 }

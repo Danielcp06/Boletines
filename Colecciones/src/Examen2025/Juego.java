@@ -6,10 +6,7 @@ import Examen2025.TRaza;
 import exceptions.DBException;
 
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Juego {
 
@@ -138,7 +135,14 @@ public class Juego {
     }
 
     private void personajeConAtaqueMasPoderoso() {
+        int maxDaño = personajes.stream()
+                .flatMap(p -> p.getAtaques().stream())
+                .mapToInt(Ataque::getDañoProvoca)
+                .max().orElse(0);
 
+        personajes.stream()
+                .filter(p -> p.getAtaques().stream().anyMatch(a -> a.getDañoProvoca() == maxDaño))
+                .forEach(p -> System.out.println(p.getNombre() + " tiene un ataque de daño " + maxDaño));
     }
 
     public Personaje buscarPersonaje(String nombre, TRaza raza) throws DBException {
@@ -156,31 +160,49 @@ public class Juego {
     public void personajeConMasAtaques() throws DBException {
         int numMaxAtaques = personajes.stream().mapToInt(personaje -> personaje.getAtaques().size())
                 .max().orElseThrow(()-> new DBException("No hay personajes"));
-
+        personajes.stream().filter(personaje -> personaje.getAtaques().size() == numMaxAtaques).forEach(System.out::println);
     }
 
     public void todosLosAtaquesOrdenadosNombre() {
-
+        personajes.stream().flatMap(personaje -> personaje.getAtaques().stream()).distinct().sorted().forEach(System.out::println);
     }
 
     public void todosLosAtaquesOrdenadosDamage() {
-
+        personajes.stream().flatMap(personaje -> personaje.getAtaques().stream()).distinct()
+                .sorted((a1,a2) -> a2.getDañoProvoca() - a1.getDañoProvoca()).forEach(System.out::println);
     }
 
     public Ataque ataqueMasDañino(Personaje p1, Personaje p2) throws DBException{
-
+        return p1.getAtaques().stream().filter(ataque -> ataque.getKi() <= p1.getKiActual())
+                .max((a1,a2) -> a1.getDañoProvoca() - a2.getDañoProvoca())
+                .orElseThrow(() -> new DBException("No puede hacer ataques pringui"));
     }
 
     public void atacar(Personaje p1, Personaje p2, String ataque) throws DBException {
+        if (p1.estaMuerto() || p2.estaMuerto()){
+            throw new DBException("Alguno de los personajes esta muerto");
+        }
+        Ataque a = p1.getAtaques().stream().filter(ataque1 -> ataque1.getNombre().equalsIgnoreCase(ataque) && ataque1.getKi() <= p1.getKiActual())
+                .max((a1,a2) -> a1.getDañoProvoca() - a2.getDañoProvoca()).orElseThrow(() -> new DBException("El ataque no se puede lanzar"));
 
+        p2.recibirDaño(a.getDañoProvoca());
+        System.out.println("El personaje 2 queda con vida " + p2.getVidaActual());
+        p1.getAtaques().remove(a);
     }
 
     public void eliminarAtaquesInferioresANivel(int nivel){
-
+        for (Personaje personaje : personajes){
+            personaje.getAtaques().removeIf(a -> a.getPerfeccionDeAtaque() < nivel);
+        }
     }
 
     public Map<TRaza, List<Personaje>> devuelveMapaRazas(){
-
+        Map<TRaza, List<Personaje>> mapaDeRaza = new HashMap<>();
+        for (TRaza raza : TRaza.values()){
+            mapaDeRaza.put(raza, personajes.stream()
+                    .filter(personaje -> personaje.getRaza() == raza).toList());
+        }
+        return mapaDeRaza;
     }
 
 }
