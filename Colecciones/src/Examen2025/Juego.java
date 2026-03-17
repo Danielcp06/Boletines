@@ -191,7 +191,7 @@ public class Juego {
     }
 
     public void eliminarAtaquesInferioresANivel(int nivel){
-        for (Personaje personaje : personajes){
+        for (Personaje personaje : personajes) {
             personaje.getAtaques().removeIf(a -> a.getPerfeccionDeAtaque() < nivel);
         }
     }
